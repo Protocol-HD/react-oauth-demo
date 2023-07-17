@@ -1,3 +1,7 @@
+import { GoogleAuthProvider, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
+import React from 'react';
+import { firebaseAuth } from './firebase';
+
 const Main = () => {
     const kakaoClientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
     const kakaoRedirectUri = process.env.REACT_APP_KAKAO_REDIRECT_URI;
@@ -31,12 +35,21 @@ const Main = () => {
         window.location.href = twitterLoginUrl;
     };
 
+    const firebaseLogin = async () => {
+        const googleProvider = new GoogleAuthProvider();
+        const twitterProvider = new TwitterAuthProvider();
+        const res = await signInWithPopup(firebaseAuth, twitterProvider);
+
+        console.log(res);
+    };
+
     return (
         <div>
             <button onClick={kakaoLogin}>Kakao Login</button>
             <button onClick={naverLogin}>Naver Login</button>
             <button onClick={googleLogin}>Google Login</button>
             <button onClick={twitterLogin}>Twitter Login</button>
+            <button onClick={firebaseLogin}>Firebase Login</button>
         </div>
     );
 };
