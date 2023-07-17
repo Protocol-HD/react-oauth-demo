@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import GoogleCallback from './GoogleCallback';
+import KakaoCallback from './KakaoCallback';
+import Main from './Main';
+import NaverCallback from './NaverCallback';
+import TwitterCallback from './TwitterCallback';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/kakaoCallback" element={<KakaoCallback />} />
+                <Route path="/naverCallback" element={<NaverCallback />} />
+                <Route path="/googleCallback" element={<GoogleCallback />} />
+                <Route path="/twitterCallback" element={<TwitterCallback />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
