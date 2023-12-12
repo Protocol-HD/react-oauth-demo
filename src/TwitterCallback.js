@@ -1,26 +1,63 @@
-import axios from 'axios';
-import { useEffect } from 'react';
+import { useMutation } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import { OAUTH_LOGIN, OAUTH_SIGNUP } from './mutations';
 
 const TwitterCallback = () => {
+    const params = new URL(document.location.toString())?.searchParams;
+    const code = params.get('code');
+
+    const twitterClientId = process.env.REACT_APP_TWITTER_CLIENT_ID;
+    const twitterRedirectUri = process.env.REACT_APP_TWITTER_REDIRECT_URI;
+
+    const [oauthLoginMutation] = useMutation(OAUTH_LOGIN);
+    const [oauthSignupMutation] = useMutation(OAUTH_SIGNUP);
+
+    const [tokens, setTokens] = useState({
+        accessToken: '',
+        refreshToken: '',
+        email: '',
+        message: '',
+    });
+
     useEffect(() => {
-        const params = new URL(document.location.toString())?.searchParams;
-        if (!params) return;
-        const code = params.get('code');
-        if (!code) return;
-
-        const twitterLogin = async () => {
-            const res = await axios.post('http://localhost:3000/oauth/twitter/login', {
-                code,
-                redirectUri: process.env.REACT_APP_TWITTER_REDIRECT_URI,
-                clientId: process.env.REACT_APP_TWITTER_CLIENT_ID,
-            });
-
+        oauthLoginMutation({
+            variables: {
+                input: {
+                    authType: 'TWITTER',
+                    code,
+                    redirectUri: twitterRedirectUri,
+                    clientId: twitterClientId,
+                },
+            },
+        }).then((res) => {
             console.log(res.data);
-        };
+            setTokens(res.data.oauthLogin);
 
-        twitterLogin();
+            if (res.data.oauthLogin.message === 'NOT_SIGNED_UP') {
+                oauthSignupMutation({
+                    variables: {
+                        input: {
+                            authType: 'TWITTER',
+                            nickname: '아서따리',
+                            oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
+                        },
+                    },
+                }).then((res) => {
+                    console.log(res.data);
+                    setTokens(res.data.oauthSignup);
+                });
+            }
+        });
     }, []);
-    return <></>;
+
+    return (
+        <>
+            <p>{tokens.accessToken ?? ''}</p>
+            <p>{tokens.refreshToken ?? ''}</p>
+            <p>{tokens.email ?? ''}</p>
+            <p>{tokens.message ?? ''}</p>
+        </>
+    );
 };
 
 export default TwitterCallback;
