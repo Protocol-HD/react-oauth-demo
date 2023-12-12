@@ -38,7 +38,7 @@ const GoogleCallback = () => {
                     variables: {
                         input: {
                             authType: 'GOOGLE',
-                            nickname: '아서따리',
+                            // nickname: '아서따리',
                             oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
                         },
                     },

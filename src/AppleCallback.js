@@ -2,12 +2,12 @@ import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { OAUTH_LOGIN, OAUTH_SIGNUP } from './mutations';
 
-const KakaoCallback = () => {
+const AppleCallback = () => {
     const params = new URL(document.location.toString())?.searchParams;
     const code = params.get('code');
 
-    const kakaoClientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
-    const kakaoRedirectUri = process.env.REACT_APP_KAKAO_REDIRECT_URI;
+    const appleClientId = process.env.REACT_APP_APPLE_CLIENT_ID;
+    const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
 
     const [oauthLoginMutation] = useMutation(OAUTH_LOGIN);
     const [oauthSignupMutation] = useMutation(OAUTH_SIGNUP);
@@ -23,10 +23,10 @@ const KakaoCallback = () => {
         oauthLoginMutation({
             variables: {
                 input: {
-                    authType: 'KAKAO',
+                    authType: 'APPLE',
                     code,
-                    redirectUri: kakaoRedirectUri,
-                    clientId: kakaoClientId,
+                    redirectUri: appleRedirectUri,
+                    clientId: appleClientId,
                 },
             },
         }).then((res) => {
@@ -37,7 +37,7 @@ const KakaoCallback = () => {
                 oauthSignupMutation({
                     variables: {
                         input: {
-                            authType: 'KAKAO',
+                            authType: 'APPLE',
                             // nickname: '아서따리',
                             oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
                         },
@@ -49,7 +49,6 @@ const KakaoCallback = () => {
             }
         });
     }, []);
-
     return (
         <>
             <p>{tokens.accessToken ?? ''}</p>
@@ -60,4 +59,4 @@ const KakaoCallback = () => {
     );
 };
 
-export default KakaoCallback;
+export default AppleCallback;

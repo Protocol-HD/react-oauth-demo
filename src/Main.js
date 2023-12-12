@@ -19,6 +19,10 @@ const Main = () => {
     const twitterRedirectUri = process.env.REACT_APP_TWITTER_REDIRECT_URI;
     const twitterLoginUrl = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientId}&redirect_uri=${twitterRedirectUri}&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
 
+    const appleClientId = process.env.REACT_APP_APPLE_CLIENT_ID;
+    const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
+    const appleLoginUrl = `https://appleid.apple.com/auth/authorize?response_type=code&client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code%20id_token&state=origin:web&scope=name%20email&response_mode=form_post`;
+
     const kakaoLogin = async () => {
         window.location.href = kakaoLoginUrl;
     };
@@ -33,6 +37,9 @@ const Main = () => {
 
     const twitterLogin = async () => {
         window.location.href = twitterLoginUrl;
+    };
+    const appleLogin = async () => {
+        window.location.href = appleLoginUrl;
     };
 
     const firebaseLogin = async () => {
@@ -50,6 +57,7 @@ const Main = () => {
             <button onClick={googleLogin}>Google Login</button>
             <button onClick={twitterLogin}>Twitter Login</button>
             <button onClick={firebaseLogin}>Firebase Login</button>
+            <button onClick={appleLogin}>Apple Login</button>
         </div>
     );
 };

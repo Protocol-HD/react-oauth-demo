@@ -18,10 +18,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Main />} />
-                    <Route path="/kakaoCallback" element={<KakaoCallback />} />
-                    <Route path="/naverCallback" element={<NaverCallback />} />
-                    <Route path="/googleCallback" element={<GoogleCallback />} />
-                    <Route path="/twitterCallback" element={<TwitterCallback />} />
+                    <Route path="/kakao-callback" element={<KakaoCallback />} />
+                    <Route path="/naver-callback" element={<NaverCallback />} />
+                    <Route path="/google-callback" element={<GoogleCallback />} />
+                    <Route path="/twitter-callback" element={<TwitterCallback />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>

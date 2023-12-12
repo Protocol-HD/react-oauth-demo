@@ -38,7 +38,7 @@ const TwitterCallback = () => {
                     variables: {
                         input: {
                             authType: 'TWITTER',
-                            nickname: '아서따리',
+                            // nickname: '아서따리',
                             oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
                         },
                     },
