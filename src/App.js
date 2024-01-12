@@ -6,6 +6,7 @@ import KakaoCallback from './KakaoCallback';
 import Main from './Main';
 import NaverCallback from './NaverCallback';
 import TwitterCallback from './TwitterCallback';
+import AppleCallback from './AppleCallback';
 
 function App() {
     const client = new ApolloClient({
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/naver-callback" element={<NaverCallback />} />
                     <Route path="/google-callback" element={<GoogleCallback />} />
                     <Route path="/twitter-callback" element={<TwitterCallback />} />
+                    <Route path="/apple-callback" element={<AppleCallback />} />
                 </Routes>
             </BrowserRouter>
         </ApolloProvider>
