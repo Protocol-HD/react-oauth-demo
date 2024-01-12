@@ -1,0 +1,8 @@
+services:
+  oauth-login-demo:
+    image: oauth-login-demo
+    container_name: oauth-login-demo
+    hostname: oauth-login-demo
+    restart: unless-stopped
+    ports:
+      - "50008:80"
