@@ -9,7 +9,7 @@ import TwitterCallback from './TwitterCallback';
 
 function App() {
     const client = new ApolloClient({
-        uri: 'http://localhost:2000/graphql',
+        uri: process.env.REACT_APP_BACKEND_URL,
         cache: new InMemoryCache(),
     });
 
