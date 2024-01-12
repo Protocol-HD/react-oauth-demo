@@ -20,34 +20,35 @@ const AppleCallback = () => {
     });
 
     useEffect(() => {
-        oauthLoginMutation({
-            variables: {
-                input: {
-                    authType: 'APPLE',
-                    code,
-                    redirectUri: appleRedirectUri,
-                    clientId: appleClientId,
-                },
-            },
-        }).then((res) => {
-            console.log(res.data);
-            setTokens(res.data.oauthLogin);
+        console.log(code);
+        // oauthLoginMutation({
+        //     variables: {
+        //         input: {
+        //             authType: 'APPLE',
+        //             code,
+        //             redirectUri: appleRedirectUri,
+        //             clientId: appleClientId,
+        //         },
+        //     },
+        // }).then((res) => {
+        //     console.log(res.data);
+        //     setTokens(res.data.oauthLogin);
 
-            if (res.data.oauthLogin.message === 'NOT_SIGNED_UP') {
-                oauthSignupMutation({
-                    variables: {
-                        input: {
-                            authType: 'APPLE',
-                            // nickname: '아서따리',
-                            oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
-                        },
-                    },
-                }).then((res) => {
-                    console.log(res.data);
-                    setTokens(res.data.oauthSignup);
-                });
-            }
-        });
+        //     if (res.data.oauthLogin.message === 'NOT_SIGNED_UP') {
+        //         oauthSignupMutation({
+        //             variables: {
+        //                 input: {
+        //                     authType: 'APPLE',
+        //                     // nickname: '아서따리',
+        //                     oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
+        //                 },
+        //             },
+        //         }).then((res) => {
+        //             console.log(res.data);
+        //             setTokens(res.data.oauthSignup);
+        //         });
+        //     }
+        // });
     }, []);
     return (
         <>
