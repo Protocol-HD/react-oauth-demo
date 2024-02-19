@@ -5,4 +5,9 @@ services:
     hostname: oauth-login-demo
     restart: unless-stopped
     ports:
-      - "50008:80"
+      - "43004:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
