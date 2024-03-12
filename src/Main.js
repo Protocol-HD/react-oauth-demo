@@ -3,29 +3,25 @@ import React from 'react';
 import { firebaseAuth } from './firebase';
 
 const Main = () => {
+    const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+
     const kakaoClientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
-    const kakaoRedirectUri = process.env.REACT_APP_KAKAO_REDIRECT_URI;
-    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${kakaoRedirectUri}`;
+    const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${redirectUri}&state=kakao`;
 
     const naverClientId = process.env.REACT_APP_NAVER_CLIENT_ID;
-    const naverRedirectUri = process.env.REACT_APP_NAVER_REDIRECT_URI;
-    const naverLoginUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&redirect_uri=${naverRedirectUri}&state=null`;
+    const naverLoginUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&redirect_uri=${redirectUri}&state=naver`;
 
     const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-    const googleRedirectUri = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
-    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${googleClientId}&redirect_uri=${googleRedirectUri}&scope=https://www.googleapis.com/auth/userinfo.email`;
+    const googleLoginUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${googleClientId}&redirect_uri=${redirectUri}&scope=https://www.googleapis.com/auth/userinfo.email&state=google`;
 
     const twitterClientId = process.env.REACT_APP_TWITTER_CLIENT_ID;
-    const twitterRedirectUri = process.env.REACT_APP_TWITTER_REDIRECT_URI;
-    const twitterLoginUrl = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientId}&redirect_uri=${twitterRedirectUri}&scope=tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain`;
+    const twitterLoginUrl = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientId}&redirect_uri=${redirectUri}&scope=tweet.read%20users.read%20offline.access&state=twitter&code_challenge=challenge&code_challenge_method=plain`;
 
     const appleClientId = process.env.REACT_APP_APPLE_CLIENT_ID;
-    const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
-    const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code&state=AppleLogin&scope=email&response_mode=form_post`;
+    const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${redirectUri}&response_type=code&state=apple&scope=email&response_mode=form_post`;
 
     const facebookClientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
-    const facebookRedirectUri = process.env.REACT_APP_FACEBOOK_REDIRECT_URI;
-    const facebookLoginUrl = `https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v19.0&appId=${facebookClientId}`;
+    const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook&scope=email&response_type=code&auth_type=rerequest&display=popup`;
 
     const kakaoLogin = async () => {
         window.location.href = kakaoLoginUrl;
@@ -64,9 +60,9 @@ const Main = () => {
             <button onClick={naverLogin}>Naver Login</button>
             <button onClick={googleLogin}>Google Login</button>
             <button onClick={twitterLogin}>Twitter Login</button>
-            <button onClick={firebaseLogin}>Firebase Login</button>
             <button onClick={appleLogin}>Apple Login</button>
             <button onClick={facebookLogin}>Facebook Login</button>
+            <button onClick={firebaseLogin}>Firebase Login</button>
         </div>
     );
 };
