@@ -64,7 +64,7 @@ const Login = () => {
                     variables: {
                         input: {
                             authType: state.toUpperCase(),
-                            nickname: '아서따리',
+                            nickname: '아서_' + state.toUpperCase(),
                             oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
                         },
                     },
