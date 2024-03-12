@@ -4,6 +4,7 @@ import { firebaseAuth } from './firebase';
 
 const Main = () => {
     const redirectUri = process.env.REACT_APP_REDIRECT_URI;
+    const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
 
     const kakaoClientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${redirectUri}&state=kakao`;
@@ -18,7 +19,7 @@ const Main = () => {
     const twitterLoginUrl = `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${twitterClientId}&redirect_uri=${redirectUri}&scope=tweet.read%20users.read%20offline.access&state=twitter&code_challenge=challenge&code_challenge_method=plain`;
 
     const appleClientId = process.env.REACT_APP_APPLE_CLIENT_ID;
-    const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${redirectUri}&response_type=code&state=apple&scope=email&response_mode=form_post`;
+    const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code&state=apple&scope=email&response_mode=form_post`;
 
     const facebookClientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
     const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook&scope=email&response_type=code&auth_type=rerequest&display=popup`;
