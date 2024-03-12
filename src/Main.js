@@ -23,6 +23,10 @@ const Main = () => {
     const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
     const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code&state=AppleLogin&scope=email&response_mode=form_post`;
 
+    const facebookClientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
+    const facebookRedirectUri = process.env.REACT_APP_FACEBOOK_REDIRECT_URI;
+    const facebookLoginUrl = `https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v19.0&appId=${facebookClientId}`;
+
     const kakaoLogin = async () => {
         window.location.href = kakaoLoginUrl;
     };
@@ -42,6 +46,10 @@ const Main = () => {
         window.location.href = appleLoginUrl;
     };
 
+    const facebookLogin = async () => {
+        window.location.href = facebookLoginUrl;
+    };
+
     const firebaseLogin = async () => {
         const googleProvider = new GoogleAuthProvider();
         const twitterProvider = new TwitterAuthProvider();
@@ -58,6 +66,7 @@ const Main = () => {
             <button onClick={twitterLogin}>Twitter Login</button>
             <button onClick={firebaseLogin}>Firebase Login</button>
             <button onClick={appleLogin}>Apple Login</button>
+            <button onClick={facebookLogin}>Facebook Login</button>
         </div>
     );
 };
