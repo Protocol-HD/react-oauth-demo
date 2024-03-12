@@ -16,6 +16,7 @@ const Login = () => {
                 break;
             case 'apple':
                 clientId = process.env.REACT_APP_APPLE_CLIENT_ID;
+                redirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
                 break;
             case 'kakao':
                 clientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
