@@ -25,26 +25,26 @@ const Main = () => {
     const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook`;
 
     const kakaoLogin = async () => {
-        window.open(kakaoLoginUrl, 'kakao', 'width=400, height=600');
+        window.location.href = kakaoLoginUrl;
     };
 
     const naverLogin = async () => {
-        window.open(naverLoginUrl, 'naver', 'width=400, height=600');
+        window.location.href = naverLoginUrl;
     };
 
     const googleLogin = async () => {
-        window.open(googleLoginUrl, 'google', 'width=400, height=600');
+        window.location.href = googleLoginUrl;
     };
 
     const twitterLogin = async () => {
-        window.open(twitterLoginUrl, 'twitter', 'width=400, height=600');
+        window.location.href = twitterLoginUrl;
     };
     const appleLogin = async () => {
-        window.open(appleLoginUrl, 'apple', 'width=400, height=600');
+        window.location.href = appleLoginUrl;
     };
 
     const facebookLogin = async () => {
-        window.open(facebookLoginUrl, 'facebook', 'width=400, height=600');
+        window.location.href = facebookLoginUrl;
     };
 
     const firebaseLogin = async () => {
