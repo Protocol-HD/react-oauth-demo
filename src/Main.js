@@ -1,7 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { firebaseAuth } from './firebase';
-import axios from 'axios';
 
 const Main = () => {
     const redirectUri = process.env.REACT_APP_REDIRECT_URI;
@@ -45,9 +44,7 @@ const Main = () => {
     };
 
     const facebookLogin = async () => {
-        axios.get(facebookLoginUrl).then((res) => {
-            console.log(res);
-        });
+        window.location.href = facebookLoginUrl;
     };
 
     const firebaseLogin = async () => {
