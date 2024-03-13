@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup, TwitterAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { firebaseAuth } from './firebase';
+import axios from 'axios';
 
 const Main = () => {
     const redirectUri = process.env.REACT_APP_REDIRECT_URI;
@@ -22,7 +23,7 @@ const Main = () => {
     const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code&state=apple&scope=email&response_mode=form_post`;
 
     const facebookClientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
-    const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook`;
+    const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook&scope=email&response_type=code&auth_type=rerequest&display=popup`;
 
     const kakaoLogin = async () => {
         window.location.href = kakaoLoginUrl;
@@ -44,7 +45,9 @@ const Main = () => {
     };
 
     const facebookLogin = async () => {
-        window.location.href = facebookLoginUrl;
+        axios.get(facebookLoginUrl).then((res) => {
+            console.log(res);
+        });
     };
 
     const firebaseLogin = async () => {
