@@ -22,7 +22,7 @@ const Main = () => {
     const appleLoginUrl = `https://appleid.apple.com/auth/authorize?client_id=${appleClientId}&redirect_uri=${appleRedirectUri}&response_type=code&state=apple&scope=email&response_mode=form_post`;
 
     const facebookClientId = process.env.REACT_APP_FACEBOOK_CLIENT_ID;
-    const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}`;
+    const facebookLoginUrl = `https://www.facebook.com/v19.0/dialog/oauth?client_id=${facebookClientId}&redirect_uri=${redirectUri}&state=facebook`;
 
     const kakaoLogin = async () => {
         window.location.href = kakaoLoginUrl;
