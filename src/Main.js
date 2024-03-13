@@ -3,8 +3,8 @@ import React from 'react';
 import { firebaseAuth } from './firebase';
 
 const Main = () => {
-    const redirectUri = process.env.REACT_APP_REDIRECT_URI;
-    const appleRedirectUri = process.env.REACT_APP_APPLE_REDIRECT_URI;
+    const redirectUri = encodeURI(process.env.REACT_APP_REDIRECT_URI);
+    const appleRedirectUri = encodeURI(process.env.REACT_APP_APPLE_REDIRECT_URI);
 
     const kakaoClientId = process.env.REACT_APP_KAKAO_CLIENT_ID;
     const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${redirectUri}&state=kakao`;
