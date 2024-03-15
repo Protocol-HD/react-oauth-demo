@@ -36,8 +36,8 @@ const Login = () => {
         return { clientId, redirectUri };
     })();
 
-    const [oauthLoginMutation] = useMutation(OAUTH_SIGN_IN);
-    const [oauthSignupMutation] = useMutation(OAUTH_SIGN_UP);
+    const [oauthSignInMutation] = useMutation(OAUTH_SIGN_IN);
+    const [oauthSignUpMutation] = useMutation(OAUTH_SIGN_UP);
 
     const [tokens, setTokens] = useState({
         accessToken: '',
@@ -47,7 +47,7 @@ const Login = () => {
     });
 
     useEffect(() => {
-        oauthLoginMutation({
+        oauthSignInMutation({
             variables: {
                 input: {
                     authType: state.toUpperCase(),
@@ -58,20 +58,20 @@ const Login = () => {
             },
         }).then((res) => {
             console.log(res.data);
-            setTokens(res.data.oauthLogin);
+            setTokens(res.data.oauthSignIn);
 
-            if (res.data.oauthLogin.message === 'NOT_SIGNED_UP') {
-                oauthSignupMutation({
+            if (res.data.oauthSignIn.message === 'NOT_SIGNED_UP') {
+                oauthSignUpMutation({
                     variables: {
                         input: {
                             authType: state.toUpperCase(),
                             nickname: '아서_' + state.toUpperCase(),
-                            oauthAccessToken: res.data.oauthLogin.oauthAccessToken,
+                            oauthAccessToken: res.data.oauthSignIn.oauthAccessToken,
                         },
                     },
                 }).then((res) => {
                     console.log(res.data);
-                    setTokens(res.data.oauthSignup);
+                    setTokens(res.data.oauthSignUp);
                 });
             }
         });
