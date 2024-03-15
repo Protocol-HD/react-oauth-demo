@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const OAUTH_LOGIN = gql`
-    mutation OauthLogin($input: OauthLoginInputDto!) {
-        oauthLogin(input: $input) {
+export const OAUTH_SIGN_IN = gql`
+    mutation OauthSignIn($input: OauthSignInInputDto!) {
+        oauthSignIn(input: $input) {
             accessToken
             refreshToken
             email
@@ -12,9 +12,9 @@ export const OAUTH_LOGIN = gql`
     }
 `;
 
-export const OAUTH_SIGNUP = gql`
-    mutation OauthSignup($input: OauthSignupInputDto!) {
-        oauthSignup(input: $input) {
+export const OAUTH_SIGN_UP = gql`
+    mutation OauthSignUp($input: OauthSignUpInputDto!) {
+        oauthSignUp(input: $input) {
             accessToken
             refreshToken
             email

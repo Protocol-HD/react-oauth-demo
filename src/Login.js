@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import { OAUTH_LOGIN, OAUTH_SIGNUP } from './mutations';
+import { OAUTH_LOGIN, OAUTH_SIGNUP, OAUTH_SIGN_IN, OAUTH_SIGN_UP } from './mutations';
 
 const Login = () => {
     const params = new URL(document.location.toString())?.searchParams;
@@ -36,8 +36,8 @@ const Login = () => {
         return { clientId, redirectUri };
     })();
 
-    const [oauthLoginMutation] = useMutation(OAUTH_LOGIN);
-    const [oauthSignupMutation] = useMutation(OAUTH_SIGNUP);
+    const [oauthLoginMutation] = useMutation(OAUTH_SIGN_IN);
+    const [oauthSignupMutation] = useMutation(OAUTH_SIGN_UP);
 
     const [tokens, setTokens] = useState({
         accessToken: '',
